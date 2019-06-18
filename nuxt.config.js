@@ -1,5 +1,19 @@
+import articles from './assets/json/articles.json'
 export default {
   mode: 'spa',
+  generate: {
+    routes() {
+      const articleUrls = []
+      for (const article in articles) {
+        articleUrls.push(
+          `${articles[article].category}/${articles[article].id}`
+        )
+      }
+      return articleUrls.map(url => {
+        return url
+      })
+    }
+  },
   /*
    ** Headers of the page
    */
@@ -23,15 +37,18 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['ress/ress.css'],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~plugins/three', ssr: false }],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/eslint-module'],
+  modules: ['@nuxtjs/eslint-module', '@nuxtjs/style-resources'],
+  styleResources: {
+    scss: ['@/assets/sass/main.scss']
+  },
   /*
    ** Build configuration
    */

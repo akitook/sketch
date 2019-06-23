@@ -25,17 +25,19 @@ export default {
       articles
     }
   },
-  mounted() {}
+  mounted() {
+    this.$store.dispatch('device/init')
+  }
 }
 </script>
 
 <style scoped lang="scss">
 .article-container {
-  transform: matrix(0.75, 0, 0, 0.75, 0, 0);
+  transform: matrix($containerRatio, 0, 0, $containerRatio, 0, 0);
 }
 @media screen and (min-width: 376px) {
   .article-container {
-    transform: matrix(0.55, 0, 0, 0.55, 0, 0);
+    transform: matrix($containerRatio__pc, 0, 0, $containerRatio__pc, 0, 0);
   }
 }
 </style>

@@ -1,10 +1,16 @@
 <template>
   <article class="Article" @click="accessDetail">
+    <div class="video-container">
+      <video class="video" autoplay loop muted :poster="imgUrl">
+        <source :src="videoUrl" type="video/mp4" />
+      </video>
+    </div>
     <h1>{{ data.title }}</h1>
     <p>{{ data.desc }}</p>
   </article>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     data: {
@@ -18,7 +24,17 @@ export default {
       height: 0
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters({
+      containerWidth: 'device/getContainerWidth'
+    }),
+    videoUrl() {
+      return require(`~/assets/sketch/${this.data.id}/assets/thumb.mp4`)
+    },
+    imgUrl() {
+      return require(`~/assets/sketch/${this.data.id}/assets/thumb.jpg`)
+    }
+  },
   methods: {
     accessDetail() {
       const url = `/${this.data.category}/${this.data.id}`
@@ -32,6 +48,24 @@ export default {
   width: 100vw;
   height: 100vh;
   margin: 0 auto 400px;
-  border: 1px solid #222;
+  box-shadow: 0 0 100px $dark-005;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.video {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: inherit;
+  transform: translateX(-50%);
 }
 </style>

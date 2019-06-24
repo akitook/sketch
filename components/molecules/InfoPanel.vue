@@ -23,7 +23,9 @@ export default {
       })
     }
   },
-  mounted() {}
+  mounted() {
+    window.console.log(this.article)
+  }
 }
 </script>
 <style scoped lang="scss">

@@ -7,25 +7,21 @@
 
 <script>
 import InfoPanel from '~/components/molecules/InfoPanel'
-import Canvas from '~/assets/sketch/first'
+import articles from '~/assets/json/articles.json'
+import Canvas from '~/assets/sketch/earth'
 export default {
   components: {
     InfoPanel
   },
   data() {
     return {
-      Canvas
-    }
-  },
-  async asyncData({ params }) {
-    const articles = await import('~/assets/json/articles.json')
-    return {
-      article: articles[params.id]
+      Canvas,
+      article: articles.earth
     }
   },
   mounted() {
     const initCanvas = new this.Canvas()
-    window.console.log(initCanvas)
+    initCanvas.render()
   }
 }
 </script>

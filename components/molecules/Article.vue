@@ -70,7 +70,7 @@ export default {
   transform: translateX(-50%);
 }
 
-@media screen and (min-width: 376px) {
+@media screen and (min-width: 768px) {
   .Article {
     width: 50vw;
     height: calc(50vw / 1.618);

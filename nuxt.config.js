@@ -1,5 +1,8 @@
 import articles from './assets/json/articles.json'
 export default {
+  router: {
+    base: '/sketch/'
+  },
   mode: 'spa',
   generate: {
     routes() {

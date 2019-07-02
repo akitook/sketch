@@ -33,11 +33,11 @@ export default {
 
 <style scoped lang="scss">
 .article-container {
-  transform: matrix($containerRatio, 0, 0, $containerRatio, 0, 0);
+  // transorm: matrix($containerRatio, 0, 0, $containerRatio, 0, 0);
 }
 @media screen and (min-width: 376px) {
   .article-container {
-    transform: matrix($containerRatio__pc, 0, 0, $containerRatio__pc, 0, 0);
+    // transform: matrix($containerRatio__pc, 0, 0, $containerRatio__pc, 0, 0);
   }
 }
 </style>

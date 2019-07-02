@@ -45,10 +45,11 @@ export default {
 </script>
 <style scoped lang="scss">
 .Article {
-  width: 100vw;
-  height: 100vh;
-  margin: 0 auto 400px;
+  width: 80vw;
+  height: calc(80vw / 1.618);
+  margin: 0 auto 100px;
   box-shadow: 0 0 100px $dark-005;
+  font-family: $font-sans;
   &:hover {
     cursor: pointer;
   }
@@ -67,5 +68,14 @@ export default {
   min-height: 100%;
   max-width: inherit;
   transform: translateX(-50%);
+}
+
+@media screen and (min-width: 376px) {
+  .Article {
+    width: 50vw;
+    height: calc(50vw / 1.618);
+    max-width: 800px;
+    margin: 0 auto 200px;
+  }
 }
 </style>

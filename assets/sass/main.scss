@@ -1,10 +1,5 @@
 @import "variable";
 
-body {
-  font-family: $font-sans;
-  color: $dark-087;
-}
-
 .page-enter-active, .page-leave-active {
   transition: opacity .5s
 }

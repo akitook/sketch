@@ -54,11 +54,18 @@ export default {
     cursor: pointer;
   }
 }
+h1 {
+  font-size: 14px;
+}
+p {
+  font-size: 12px;
+}
 .video-container {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  margin-bottom: 4px;
 }
 .video {
   position: absolute;
@@ -76,6 +83,12 @@ export default {
     height: calc(50vw / 1.618);
     max-width: 800px;
     margin: 0 auto 200px;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.2rem;
   }
 }
 </style>

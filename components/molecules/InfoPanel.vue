@@ -30,7 +30,7 @@ export default {
 .InfoPanel {
   position: absolute;
   bottom: 24px;
-  left: 48px;
+  left: 24px;
   max-width: 640px;
   z-index: 1;
   &.bg-white {
@@ -59,19 +59,19 @@ export default {
   }
 }
 .info-title {
-  font-size: 64px;
+  font-size: 48px;
   letter-spacing: -2px;
 }
 .info-category {
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 16px;
 }
 .info-desc {
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 6px;
 }
 .info-date {
-  font-size: 14px;
+  font-size: 12px;
   display: block;
   margin-bottom: 6px;
 }
@@ -84,6 +84,27 @@ export default {
     text-decoration: none;
     border: 1px solid $light-100;
     border-radius: 16px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .InfoPanel {
+    bottom: 24px;
+    left: 48px;
+  }
+  .info-title {
+    font-size: 64px;
+  }
+  .info-category {
+    font-size: 14px;
+  }
+  .info-desc {
+    font-size: 14px;
+  }
+  .info-date {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 6px;
   }
 }
 </style>

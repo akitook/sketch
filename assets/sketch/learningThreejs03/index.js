@@ -20,7 +20,7 @@ export default class Canvas {
 
   loadFonts() {
     const fontLoader = new FontLoader()
-    fontLoader.load('/assets/fonts/pupupu-free.json', pupupu => {
+    fontLoader.load('/sketch/assets/fonts/pupupu-free.json', pupupu => {
       this.fonts.pupupu = pupupu
       this.init()
     })

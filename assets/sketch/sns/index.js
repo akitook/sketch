@@ -58,7 +58,7 @@ export default class Canvas {
 
   getTexture() {
     const loader = new THREE.TextureLoader()
-    return loader.load('/assets/textures/sns-sprite.png')
+    return loader.load('/sketch/assets/textures/sns-sprite.png')
   }
 
   createSprite(

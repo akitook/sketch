@@ -1,7 +1,7 @@
 {
   "name": "sketch",
   "version": "1.0.0",
-  "description": "My majestic Nuxt.js project",
+  "description": "My sketch by Akito Okubo",
   "author": "Akito Okubo",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "subtree": "git subtree push --prefix dist origin gh-pages"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@nuxtjs/google-gtag": "^1.0.4",
@@ -19,6 +19,7 @@
     "dat.gui": "^0.7.6",
     "glslify-loader": "^2.0.0",
     "nuxt": "^2.0.0",
+    "push-dir": "^0.4.1",
     "raw-loader": "^3.0.0",
     "ress": "^1.2.2",
     "stats.js": "^0.17.0",

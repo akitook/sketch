@@ -3,7 +3,7 @@ import * as THREE from 'three'
 // Define common variables
 //
 
-let renderer, scene
+let renderer
 const camera = new THREE.PerspectiveCamera(
   45,
   window.innerWidth / window.innerHeight,
@@ -34,7 +34,7 @@ export default class Canvas {
   }
 
   init() {
-    scene = new THREE.Scene()
+    this.scene = new THREE.Scene()
     renderer.setClearColor(new THREE.Color(0x000000, 1))
 
     this.createSprites()
@@ -53,7 +53,7 @@ export default class Canvas {
         }
       }
     }
-    scene.add(this.group)
+    this.scene.add(this.group)
   }
 
   getTexture() {
@@ -109,7 +109,7 @@ export default class Canvas {
     this.group.rotation.y = this.step
     // 画面に表示
     renderer.autoClear = false
-    renderer.render(scene, camera)
+    renderer.render(this.scene, camera)
     // 次のフレームを要求
     requestAnimationFrame(() => {
       this.render()

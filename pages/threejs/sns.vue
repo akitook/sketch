@@ -26,6 +26,12 @@ export default {
     this.initCanvas.init()
     window.addEventListener('resize', this.initCanvas.onResize(), false)
   },
+  destroyed() {
+    window.console.log('destroyed')
+    this.initCanvas.scene.remove(this.initCanvas.scene.children)
+    this.initCanvas.scene.children.length = 0
+    this.initCanvas = false
+  },
   methods: {}
 }
 </script>

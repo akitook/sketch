@@ -85,10 +85,12 @@ export default {
 }
 .title {
   font-size: 48px;
+  font-weight: 500;
 }
 .subtitle {
   font-size: 24px;
   color: $dark-054;
+  font-weight: 300;
 }
 .link {
   list-style-type: none;

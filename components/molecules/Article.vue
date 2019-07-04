@@ -56,9 +56,11 @@ export default {
 }
 h1 {
   font-size: 14px;
+  font-weight: 400;
 }
 p {
   font-size: 12px;
+  font-weight: 300;
 }
 .video-container {
   position: relative;
@@ -88,7 +90,7 @@ p {
     font-size: 1.5rem;
   }
   p {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
 </style>

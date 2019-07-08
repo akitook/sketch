@@ -18,7 +18,7 @@ export default {
     return {
       initCanvas: false,
       gui: false,
-      article: articles.butterfly
+      article: articles.bigsight
     }
   },
   mounted() {

@@ -1,5 +1,18 @@
 {
-  "butterfly": {
+  "faceTracker": {
+    "id": "faceTracker",
+    "title": "faceTracker",
+    "desc": "Use WebCam and clmtrackr",
+    "category": "threejs",
+    "date": "2019-07-04",
+    "bg": "black",
+    "references": [
+      { "title":  "clmtrackr",
+        "url": "https://github.com/auduno/clmtrackr"
+      }
+    ]
+  },
+  "bigsight": {
     "id": "bigsight",
     "title": "bigsight",
     "desc": "Reffered to chapter 8 in 「Learning Three.js」",

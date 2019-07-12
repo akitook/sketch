@@ -1,30 +1,30 @@
 <template>
-  <div class="wrapper">
+  <div class="faceTracker">
     <InfoPanel :article="article" />
-    <div class="container">
-      <video
-        id="video"
-        class="video"
-        :width="videoWidth"
-        :height="videoHeight"
-        preload="auto"
-        loop
-        playsinline
-        autoplay
-      ></video>
-      <canvas
-        id="overlay"
-        class="canvas"
-        :width="videoWidth"
-        :height="videoHeight"
-      ></canvas>
+    <div class="visual">
+      <div class="video-container">
+        <video
+          id="video"
+          class="video"
+          preload="auto"
+          loop
+          playsinline
+          autoplay
+          :width="vw"
+          :height="vh"
+          :style="`top: ${vy}px; left: ${vx}px;`"
+        ></video>
+        <canvas
+          id="overlay"
+          class="canvas"
+          :width="vw"
+          :height="vh"
+          :style="`top: ${vy}px; left: ${vx}px;`"
+        ></canvas>
+      </div>
     </div>
-    <input
-      id="start-button"
-      class="start-button"
-      type="button"
-      @click="startVideo()"
-    />
+    <div id="dat" class="dat" />
+    <canvas id="threejs-canvas" class="threejs-canvas" />
   </div>
 </template>
 
@@ -32,6 +32,9 @@
 import InfoPanel from '~/components/molecules/InfoPanel'
 import articles from '~/assets/json/articles.json'
 import clm from 'clmtrackr'
+import EmotionClassifier from '~/assets/sketch/faceTracker/EmotionClassifier'
+import { emotionModel } from '~/assets/sketch/faceTracker/emotionModel'
+import Canvas from '~/assets/sketch/faceTracker/'
 export default {
   components: {
     InfoPanel
@@ -39,18 +42,21 @@ export default {
   data() {
     return {
       video: null,
-      videoWidth: 0,
-      videoHeight: 0,
+      vw: 0,
+      vh: 0,
+      vx: 0,
+      vy: 0,
       overlay: null,
       overlayCC: null,
       ctrack: null,
       trackingStarted: false,
-      article: articles.faceTracker
+      classifier: null,
+      animationFrame: false,
+      article: articles.faceTracker,
+      threeCanvas: null
     }
   },
   mounted() {
-    window.console.log(window.innerWidth)
-
     this.video = document.getElementById('video')
     this.overlay = document.getElementById('overlay')
     this.overlayCC = this.overlay.getContext('2d')
@@ -65,7 +71,7 @@ export default {
     // set up video
     if (navigator.mediaDevices) {
       navigator.mediaDevices
-        .getUserMedia({ video: true })
+        .getUserMedia({ video: { faingMode: 'user' }, audio: false })
         .then(this.gumSuccess)
         .catch(this.gumFail)
     } else if (navigator.getUserMedia) {
@@ -75,8 +81,6 @@ export default {
         'Your browser does not seem to support getUserMedia, using a fallback video instead.'
       )
     }
-    this.video.addEventListener('canplay', this.enablestart, false)
-
     // eslint-disable-next-line new-cap
     this.ctrack = new clm.tracker({
       faceDetection: {
@@ -85,41 +89,39 @@ export default {
     })
     this.ctrack.init()
     this.trackingStarted = false
+    this.threeCanvas = new Canvas()
+    this.startVideo()
   },
-  beforeDestroy() {
+  destroyed() {
     window.console.log('destroyed')
-    window.console.log(this.video.srcObject)
     const tracks = this.video.srcObject.getTracks()
     tracks.forEach(track => {
       track.stop()
     })
-    const cancel = window.requestAnimationFrame(this.drawLoop)
-    window.cancelAnimationFrame(cancel)
+    cancelAnimationFrame(this.animationFrame)
     this.video.srcObject = null
     this.trackingStarted = false
     this.video.src = null
     this.ctrack = null
+
+    this.threeCanvas.scene.remove(this.threeCanvas.scene.children)
+    this.threeCanvas.scene.children.length = 0
+    this.threeCanvas = false
   },
   methods: {
-    enablestart() {
-      const startbutton = document.getElementById('start-button')
-      startbutton.value = 'start'
-      startbutton.disabled = null
-    },
     adjustVideoProportions() {
-      const trimSize = 640
-      window.innerWidth > trimSize
-        ? (this.videoWidth = trimSize)
-        : (this.videoWidth = window.innerWidth)
-
-      window.innerHeight > trimSize
-        ? (this.videoHeight = trimSize)
-        : (this.videoHeight = window.innerHeight)
-
-      // const proportion = this.video.videoWidth / this.video.videoHeight
-      // this.videoWidth = Math.round(this.videoHeight * proportion)
-      this.video.width = this.videoWidth
-      this.overlay.width = this.videoWidth
+      const trimSize = 480
+      if (this.video.videoWidth > this.video.videoHeight) {
+        this.vh = trimSize
+        this.vw = this.video.videoWidth * (trimSize / this.video.videoHeight)
+        this.vx = -(this.vw - trimSize) / 2
+        this.vy = 0
+      } else {
+        this.vw = trimSize
+        this.vh = this.video.videoHeight * (trimSize / this.video.videoHeight)
+        this.vy = -(this.vh - trimSize) / 2
+        this.vx = 0
+      }
     },
     gumSuccess(stream) {
       // add camera stream if getUserMedia succeeded
@@ -130,7 +132,6 @@ export default {
       }
       this.video.onloadedmetadata = () => {
         this.adjustVideoProportions()
-        this.video.play()
       }
       this.video.onresize = () => {
         this.adjustVideoProportions()
@@ -143,31 +144,55 @@ export default {
     },
     startVideo() {
       // start video
-      this.video.play()
       // start tracking
       this.ctrack.start(this.video)
       this.trackingStarted = true
+
+      this.classifier = new EmotionClassifier()
+      this.classifier.init(emotionModel)
       // start loop to draw face
       this.drawLoop()
     },
     drawLoop() {
-      requestAnimationFrame(this.drawLoop)
-      this.overlayCC.clearRect(0, 0, this.videoWidth, this.videoHeight)
+      this.animationFrame = requestAnimationFrame(this.drawLoop)
+      this.overlayCC.clearRect(0, 0, this.vw, this.vh)
       if (this.ctrack.getCurrentPosition()) {
-        this.ctrack.draw(this.overlay)
+        // this.ctrack.draw(this.overlay)
       }
+      const cp = this.ctrack.getCurrentParameters()
+      const emo = this.classifier.meanPredict(cp)
+      // this.showEmotionData(emo)
+      const happyScore = emo ? Number(emo[5].value) : 0.5
+      this.threeCanvas.render(happyScore)
+    },
+    showEmotionData(emo) {
+      let str = ''
+      for (let i = 0; i < emo.length; i++) {
+        str += emo[i].emotion + ': ' + emo[i].value.toFixed(1) + '<br>'
+      }
+      const dat = document.getElementById('dat')
+      dat.innerHTML = str
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.wrapper {
+.faceTracker {
+}
+.visual {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.container {
+.video-container {
+  position: relative;
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
 }
 .video {
   display: block;
@@ -181,6 +206,12 @@ export default {
   top: 0;
   left: 0;
 }
+.threejs-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
 .start-button {
   display: block;
   width: 300px;
@@ -188,10 +219,22 @@ export default {
   top: 50%;
   left: calc(50% - 150px);
 }
+.dat {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .gui-input {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1;
+}
+@media screen and (min-width: 768px) {
+  .video-container {
+    width: 480px;
+    height: 480px;
+    border-radius: 240px;
+  }
 }
 </style>

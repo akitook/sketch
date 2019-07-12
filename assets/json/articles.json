@@ -1,11 +1,11 @@
 {
   "faceTracker": {
     "id": "faceTracker",
-    "title": "faceTracker",
+    "title": "smile tracker",
     "desc": "Use WebCam and clmtrackr",
     "category": "threejs",
     "date": "2019-07-04",
-    "bg": "black",
+    "bg": "white",
     "references": [
       { "title":  "clmtrackr",
         "url": "https://github.com/auduno/clmtrackr"

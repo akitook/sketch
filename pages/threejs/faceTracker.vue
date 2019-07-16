@@ -157,11 +157,12 @@ export default {
       this.animationFrame = requestAnimationFrame(this.drawLoop)
       this.overlayCC.clearRect(0, 0, this.vw, this.vh)
       if (this.ctrack.getCurrentPosition()) {
-        // this.ctrack.draw(this.overlay)
+        this.ctrack.draw(this.overlay)
       }
       const cp = this.ctrack.getCurrentParameters()
       const emo = this.classifier.meanPredict(cp)
-      // this.showEmotionData(emo)
+
+      this.showEmotionData(emo)
       const happyScore = emo ? Number(emo[5].value) : 0.5
       this.threeCanvas.render(happyScore)
     },

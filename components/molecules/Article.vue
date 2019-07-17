@@ -1,5 +1,6 @@
 <template>
   <article class="Article" @click="accessDetail">
+    <div class="date">{{ data.date }}</div>
     <div class="video-container">
       <video class="video" autoplay loop muted :poster="imgUrl">
         <source :src="videoUrl" type="video/mp4" />
@@ -45,6 +46,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .Article {
+  position: relative;
   width: 80vw;
   height: calc(80vw / 1.618);
   margin: 0 auto 100px;
@@ -62,6 +64,12 @@ p {
   font-size: 12px;
   font-weight: 300;
 }
+.date {
+  position: absolute;
+  top: 32px;
+  left: -52px;
+  transform: rotate(90deg);
+}
 .video-container {
   position: relative;
   width: 100%;
@@ -77,6 +85,7 @@ p {
   min-height: 100%;
   max-width: inherit;
   transform: translateX(-50%);
+  filter: opacity(85%);
 }
 
 @media screen and (min-width: 768px) {

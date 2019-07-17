@@ -15,13 +15,18 @@ export default {
   },
   data() {
     return {
-      Canvas,
+      initCanvas: null,
       article: articles.earth
     }
   },
   mounted() {
-    const initCanvas = new this.Canvas()
-    initCanvas.render()
+    this.initCanvas = new Canvas()
+    this.initCanvas.render()
+  },
+  destroyed() {
+    this.initCanvas.scene.remove(this.initCanvas.scene.children)
+    this.initCanvas.scene.children.length = 0
+    this.initCanvas = false
   }
 }
 </script>

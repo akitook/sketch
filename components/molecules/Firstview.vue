@@ -56,10 +56,23 @@ export default {
       box.castshadow = true
       scene.add(box)
       const tick = () => {
-        box.rotation.y += 0.01
-        box.rotation.z += 0.01
+        const scaleRate = this.scrollY * 0.001 + 1
+        if (scaleRate < 2.5) {
+          box.rotation.y += 0.01
+          box.rotation.z += 0.01
 
-        box.position.y = -this.scrollY * 1.5
+          box.scale.x = scaleRate
+          box.scale.y = scaleRate
+          box.scale.z = scaleRate
+        } else {
+          box.rotation.y += 0.005
+          box.rotation.z += 0.005
+
+          box.scale.x = 2.5
+          box.scale.y = 2.5
+          box.scale.z = 2.5
+        }
+
         renderer.render(scene, camera)
 
         requestAnimationFrame(tick)
@@ -85,11 +98,12 @@ export default {
   height: 100vh;
 }
 .canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: -1;
 }
 .text {
   z-index: 1;

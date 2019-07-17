@@ -31,6 +31,11 @@ export default {
     this.gui.add(this.initCanvas.controls, 'bouncingSpeed', 0, 0.5)
     document.getElementById('gui-output').appendChild(this.gui.domElement)
   },
+  destroyed() {
+    this.initCanvas.scene.remove(this.initCanvas.scene.children)
+    this.initCanvas.scene.children.length = 0
+    this.initCanvas = false
+  },
   methods: {}
 }
 </script>

@@ -26,6 +26,11 @@ export default {
   mounted() {
     this.initCanvas = new Canvas()
   },
+  destroyed() {
+    this.initCanvas.scene.remove(this.initCanvas.scene.children)
+    this.initCanvas.scene.children.length = 0
+    this.initCanvas = false
+  },
   methods: {}
 }
 </script>

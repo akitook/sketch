@@ -47,6 +47,7 @@ export default class Canvas {
       this.asParticles = true
     })()
   }
+
   redraw() {
     // remove the old plane
     if (this.knot) scene.remove(this.knot)
@@ -70,6 +71,7 @@ export default class Canvas {
     // add it to the scene.
     scene.add(this.knot)
   }
+
   init() {
     scene = new THREE.Scene()
     renderer.setClearColor(0x000000, 1)

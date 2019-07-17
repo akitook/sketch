@@ -1,4 +1,17 @@
 {
+  "arjs01": {
+    "id": "arjs01",
+    "title": "AR#01",
+    "desc": "ar.js",
+    "category": "threejs",
+    "date": "2019-07-17",
+    "bg": "white",
+    "references": [
+      { "title":  "ar.js",
+        "url": "https://github.com/jeromeetienne/AR.js/blob/master/README.md"
+      }
+    ]
+  },
   "faceTracker": {
     "id": "faceTracker",
     "title": "smile tracker",

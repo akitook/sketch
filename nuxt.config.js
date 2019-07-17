@@ -38,6 +38,13 @@ export default {
         href:
           'https://fonts.googleapis.com/css?family=Ubuntu:300,400,500&display=swap'
       }
+    ],
+    script: [
+      { src: 'https://aframe.io/releases/0.9.1/aframe.min.js' },
+      {
+        src:
+          'https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.2/aframe/build/aframe-ar.js'
+      }
     ]
   },
   /*

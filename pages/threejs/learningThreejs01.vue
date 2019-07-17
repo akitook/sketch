@@ -8,10 +8,10 @@
 </template>
 
 <script>
+import * as dat from 'dat.gui'
 import InfoPanel from '~/components/molecules/InfoPanel'
 import articles from '~/assets/json/articles.json'
 import Canvas from '~/assets/sketch/learningThreejs01'
-import * as dat from 'dat.gui'
 
 export default {
   components: {

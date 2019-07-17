@@ -29,9 +29,9 @@
 </template>
 
 <script>
+import clm from 'clmtrackr'
 import InfoPanel from '~/components/molecules/InfoPanel'
 import articles from '~/assets/json/articles.json'
-import clm from 'clmtrackr'
 import EmotionClassifier from '~/assets/sketch/faceTracker/EmotionClassifier'
 import { emotionModel } from '~/assets/sketch/faceTracker/emotionModel'
 import Canvas from '~/assets/sketch/faceTracker/'

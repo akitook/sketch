@@ -60,6 +60,7 @@ export default class Canvas {
       }
     )
   }
+
   meshLoad(texture) {
     const geo = new THREE.SphereGeometry(505, 32, 16)
     geo.scale(-1, 1, 1)
@@ -92,10 +93,12 @@ export default class Canvas {
     })
     this.render()
   }
+
   onMouseMove(e) {
     mouseX = (e.clientX - window.innerWidth / 2) / 2
     mouseY = (e.clientY - window.innerHeight / 2) / 2
   }
+
   onResize() {
     window.console.log('onresize')
     camera.aspect = window.innerWidth / window.innerHeight

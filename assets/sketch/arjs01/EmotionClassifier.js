@@ -6,11 +6,9 @@ export default class EmotionClassifier {
     this.emotions = []
     this.coefficient_length = ''
   }
-
   getEmotions = function() {
     return this.emotions
   }
-
   init(model) {
     // load it
     for (const m in model) {
@@ -24,7 +22,6 @@ export default class EmotionClassifier {
       this.emotions[0]
     ].coefficients.length
   }
-
   getBlank() {
     const prediction = []
     for (let j = 0; j < this.emotions.length; j++) {

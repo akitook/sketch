@@ -69,6 +69,7 @@ p {
   top: 32px;
   left: -52px;
   transform: rotate(90deg);
+  color: $dark-054;
 }
 .video-container {
   position: relative;

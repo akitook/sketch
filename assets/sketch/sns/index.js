@@ -96,6 +96,7 @@ export default class Canvas {
     sprite.velocityX = 5
     return sprite
   }
+
   onResize() {
     window.console.log('onresize')
     camera.aspect = window.innerWidth / window.innerHeight

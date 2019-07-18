@@ -3,7 +3,7 @@
     <InfoPanel :article="article" />
     <div class="container">
       <div class="one">
-        <h2>1. Open web app in your phone browser.</h2>
+        <h2>1. Scan QR code to open web app in your phone browser.</h2>
         <h2>2. Scan this marker image.</h2>
         <img src="~/assets/sketch/arjs01/assets/qrmarker.png" alt="QR CODE" />
       </div>

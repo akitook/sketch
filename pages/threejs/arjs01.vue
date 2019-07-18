@@ -4,11 +4,8 @@
     <div class="container">
       <div class="one">
         <h2>1. Open web app in your phone browser.</h2>
-        <img src="~/assets/sketch/arjs01/assets/qr.png" alt="QR CODE" />
-      </div>
-      <div class="two">
         <h2>2. Scan this marker image.</h2>
-        <img src="~/assets/sketch/arjs01/assets/hiro.jpg" alt="hiro marker" />
+        <img src="~/assets/sketch/arjs01/assets/qrmarker.png" alt="QR CODE" />
       </div>
     </div>
   </div>
@@ -32,9 +29,11 @@ export default {
 
 <style scoped lang="scss">
 .container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 @media screen and (min-width: 768px) {
 }

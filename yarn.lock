@@ -2951,8 +2951,9 @@ debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   dependencies:
     ms "^2.1.1"
 
-"debug@github:ngokevin/debug#noTimestamp":
+debug@ngokevin/debug#noTimestamp:
   version "2.2.0"
+  uid ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a
   resolved "https://codeload.github.com/ngokevin/debug/tar.gz/ef5f8e66d49ce8bc64c6f282c15f8b7164409e3a"
 
 decamelize@^1.1.1, decamelize@^1.1.2:
@@ -3110,8 +3111,9 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-"document-register-element@github:dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90":
+document-register-element@dmarcos/document-register-element#8ccc532b7f3744be954574caf3072a5fd260ca90:
   version "0.5.4"
+  uid "8ccc532b7f3744be954574caf3072a5fd260ca90"
   resolved "https://codeload.github.com/dmarcos/document-register-element/tar.gz/8ccc532b7f3744be954574caf3072a5fd260ca90"
 
 dom-converter@^0.2:
@@ -5313,9 +5315,10 @@ jsesc@~0.5.0:
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
 
-"jsfeat@git+https://github.com/inspirit/jsfeat.git":
+"jsfeat@git+https://github.com/inspirit/jsfeat":
   version "0.0.8"
-  resolved "git+https://github.com/inspirit/jsfeat.git#4c7b336bbeeb26e6cd4cdf3c7d414abe273846f3"
+  uid "4c7b336bbeeb26e6cd4cdf3c7d414abe273846f3"
+  resolved "git+https://github.com/inspirit/jsfeat#4c7b336bbeeb26e6cd4cdf3c7d414abe273846f3"
 
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
@@ -7431,9 +7434,9 @@ postcss-values-parser@^2.0.0, postcss-values-parser@^2.0.1:
     uniq "^1.0.1"
 
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.17"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
-  integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
+  version "7.0.36"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.36.tgz#056f8cffa939662a8f5905950c07d5285644dfcb"
+  integrity sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
